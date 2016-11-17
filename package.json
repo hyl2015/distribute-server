@@ -1,0 +1,22 @@
+{
+  "name": "publish-server",
+  "version": "1.0.0",
+  "description": "react native publish server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyl2015/publish-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hyl2015/publish-server/issues"
+  },
+  "homepage": "https://github.com/hyl2015/publish-server#readme",
+  "dependencies": {
+    "hapi": "^15.2.0"
+  }
+}
