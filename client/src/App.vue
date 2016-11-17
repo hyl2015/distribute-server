@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    {{info.name}}
+    <el-button>默认按钮</el-button>
+    <el-button type="primary">主要按钮</el-button>
+    <el-button type="text">文字按钮</el-button>
   </div>
 </template>
 
 <script>
   import Hello from './components/Hello'
   import {mapGetters} from 'vuex'
+  import {Button, Select} from 'element-ui'
   export default {
     name: 'app',
     computed: {
@@ -24,7 +27,9 @@
       }
     },
     components: {
-      Hello
+      Hello,
+      ElButton: Button,
+      Select
     }
   }
 </script>
