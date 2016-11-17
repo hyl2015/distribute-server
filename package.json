@@ -4,7 +4,8 @@
   "description": "react native publish server",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "dev": "babel-node-debug server.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,11 @@
   "homepage": "https://github.com/hyl2015/publish-server#readme",
   "dependencies": {
     "hapi": "^15.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-preset-node6": "^11.0.0"
   }
 }
