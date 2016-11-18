@@ -1,0 +1,30 @@
+{
+  "connections": [
+    {
+      "host": "localhost",
+      "port": 8081,
+      "routes": {
+        "cors": true
+      },
+      "router": {
+        "stripTrailingSlash": true
+      }
+    }
+  ],
+  "registrations": [
+    {
+      "plugin": "hapi-auth-jwt2"
+    },
+    {
+      "plugin": "./src/plugins/auth"
+    },
+    {
+      "plugin": "./src/api",
+      "options": {
+        "routes": {
+          "prefix": "/api"
+        }
+      }
+    }
+  ]
+}

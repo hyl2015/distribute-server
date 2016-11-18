@@ -3,30 +3,23 @@
  */
 'use strict'
 
-import Hapi from 'hapi'
+import Glue from 'glue'
+import manifest from './src/config/manifest.json'
 
-// Create a server with a host and port
-const server = new Hapi.Server()
-server.connection({
-    host: 'localhost',
-    port: 8081
-})
+if (!process.env.PRODUCTION) {
+    manifest.registrations.push({
+        "plugin": {
+            "register": "blipp",
+            "options": {}
+        }
+    })
+}
 
-// Add the route
-server.route({
-    method: 'GET',
-    path: '/hello',
-    handler: function (request, reply) {
-
-        return reply('hello world')
-    }
-})
-
-// Start the server
-server.start((err) => {
-
+Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
     if (err) {
-        throw err
+        console.log('server.register err:', err)
     }
-    console.log('Server running at:', server.info.uri)
+    server.start(() => {
+        console.log('✅  Server is listening on ' + server.info.uri.toLowerCase())
+    })
 })

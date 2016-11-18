@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "dev": "babel-node-debug server.js"
+    "dev": "./node_modules/babel-cli/bin/babel-node.js --debug server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/hyl2015/publish-server#readme",
   "dependencies": {
+    "blipp": "^2.3.0",
+    "glue": "^4.0.0",
     "hapi": "^15.2.0",
+    "hapi-auth-jwt2": "^7.2.0",
     "hapi-cors": "^1.0.1"
   },
   "devDependencies": {
