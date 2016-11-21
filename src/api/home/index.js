@@ -3,9 +3,22 @@
  */
 
 
+import Build from '../../../scripts/Build'
+
 
 export const hello = {
     handler: function (request, reply) {
+        const build = new Build({
+            platform: Build.PLATFORMS.IOS,
+            inPath: '/Users/linlin.huang/Documents/workspace/rn/lifeline',
+            entryFile: 'index.ios.js',
+            outPath: '/Users/linlin.huang/Desktop/out',
+            version: request.params.version,
+            preVersion: 1
+        })
+
+        build.start()
+
         return reply({result: 'Hello hapi!'})
     }
 }
