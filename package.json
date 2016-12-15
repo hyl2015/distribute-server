@@ -20,11 +20,15 @@
   "dependencies": {
     "archiver": "^1.2.0",
     "blipp": "^2.3.0",
+    "bookshelf": "^0.10.2",
     "glue": "^4.0.0",
     "hapi": "^16.0.1",
     "hapi-auth-jwt2": "^7.2.0",
+    "hapi-bookshelf-models": "^2.0.0",
     "hapi-cors": "^1.0.1",
+    "knex": "^0.12.6",
     "md5-file": "^3.1.1",
+    "mysql": "^2.12.0",
     "rd": "^1.0.0",
     "shelljs": "^0.7.5",
     "yargs": "^6.4.0"

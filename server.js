@@ -5,15 +5,41 @@
 
 import Glue from 'glue'
 import manifest from './src/config/manifest.json'
+import baseModel from './src/orm/baseModel'
 
 if (!process.env.PRODUCTION) {
     manifest.registrations.push({
-        "plugin": {
-            "register": "blipp",
-            "options": {}
+        plugin: {
+            register: 'blipp',
+            options: {}
         }
     })
 }
+
+manifest.registrations.push({
+    plugin: {
+        register: 'hapi-bookshelf-models',
+        options: {
+            knex: {
+                client: 'mysql',
+                connection: {
+                    host: 'localhost',
+                    user: 'root',
+                    password: '123456',
+                    database: 'publish_server',
+                    port: 3306
+                }
+            },
+            plugins: [
+                'registry'
+            ],
+            models: './src/orm/models',
+            collections: './src/orm/collections',
+            base: baseModel
+        }
+    }
+})
+
 
 Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
     if (err) {
