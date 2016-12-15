@@ -1,15 +1,42 @@
 <template>
   <div id="app">
-    <el-button>默认按钮</el-button>
-    <el-button type="primary">主要按钮</el-button>
-    <el-button type="text">文字按钮</el-button>
+    <div class="banner">
+      <div class="banner-title">
+        RN发布系统
+      </div>
+      <div class="banner-desc">
+        基于chaijs,vue的rn热更新系统的后台管理平台
+      </div>
+    </div>
+
+    <div class="app-login">
+      <flexbox orient="vertical">
+        <flexbox-item>
+          <text-field label="用户名" label-float/>
+        </flexbox-item>
+        <flexbox-item>
+          <text-field label="密码" label-float/>
+        </flexbox-item>
+        <flexbox-item>
+          <mu-button>登录</mu-button>
+        </flexbox-item>
+      </flexbox>
+    </div>
+
   </div>
 </template>
 
 <script>
   import Hello from './components/Hello'
+  import MuAppBar from 'muse-ui/src/appBar'
+  import MuIconButton from 'muse-ui/src/iconButton'
+  import FlexBox from 'muse-ui/src/flexbox/flexbox.vue'
+  import FlexBoxItem from 'muse-ui/src/flexbox/flexboxItem.vue'
+  import Button from 'muse-ui/src/raisedButton'
+  import TextField from 'muse-ui/src/textField'
+
+
   import {mapGetters} from 'vuex'
-  import {Button, Select} from 'element-ui'
   export default {
     name: 'app',
     computed: {
@@ -28,19 +55,39 @@
     },
     components: {
       Hello,
-      ElButton: Button,
-      Select
+      'mu-appbar': MuAppBar,
+      'mu-icon-button': MuIconButton,
+      'flexbox': FlexBox,
+      'flexbox-item': FlexBoxItem,
+      'text-field': TextField,
+      'mu-button': Button
     }
   }
 </script>
 
-<style>
-  /*#app {*/
-  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-  /*-webkit-font-smoothing: antialiased;*/
-  /*-moz-osx-font-smoothing: grayscale;*/
-  /*text-align: center;*/
-  /*color: #2c3e50;*/
-  /*margin-top: 60px;*/
-  /*}*/
+<style lang="less" scoped>
+  /*@import "~muse-ui/src/styles/import.less";*/
+
+  #app {
+    height: 100%;
+  }
+
+  .banner {
+    padding-top: 3rem;
+    background-color: #009688;
+  }
+
+  .banner .banner-title {
+    text-align: center;
+    font-size: 3rem;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .banner .banner-desc {
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    padding-bottom: 3rem;
+  }
 </style>
