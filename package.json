@@ -24,7 +24,6 @@
     "glue": "^4.0.0",
     "hapi": "^16.0.1",
     "hapi-auth-jwt2": "^7.2.0",
-    "hapi-bookshelf-models": "^2.0.0",
     "hapi-cors": "^1.0.1",
     "knex": "^0.12.6",
     "md5-file": "^3.1.1",
