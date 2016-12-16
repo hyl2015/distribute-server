@@ -4,8 +4,9 @@
 
 import * as Home from './home'
 
-exports.register = (plugin, options, next) => {
+export const register = (plugin, options, next) => {
     plugin.route([
+        {method: 'GET', path: '/test', config: Home.test},
         {method: 'GET', path: '/{version}', config: Home.hello},
         {method: 'GET', path: '/restricted', config: Home.restricted},
         {method: 'GET', path: '/{path*}', config: Home.notFound}
@@ -14,6 +15,6 @@ exports.register = (plugin, options, next) => {
     next()
 }
 
-exports.register.attributes = {
+register.attributes = {
     name: 'api'
 }

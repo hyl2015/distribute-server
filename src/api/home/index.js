@@ -35,3 +35,17 @@ export const notFound = {
         return reply({result: 'Oops, 404 Page!'}).code(404)
     }
 }
+
+
+export const test = {
+    handler: function (request, reply) {
+        const server = request.server
+        const User = server.plugins.bookshelf.model('User')
+        User.forge({
+            id: 1
+        }).fetch().then(function (user) {
+            reply(user)
+        })
+        // return reply({result: 'Hello hapi!'})
+    }
+}

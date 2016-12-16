@@ -18,7 +18,7 @@ if (!process.env.PRODUCTION) {
 
 manifest.registrations.push({
     plugin: {
-        register: 'hapi-bookshelf-models',
+        register: './src/plugins/hapi-bookshelf-models',
         options: {
             knex: {
                 client: 'mysql',
