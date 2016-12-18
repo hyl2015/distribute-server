@@ -45,6 +45,9 @@ export const test = {
             id: 1
         }).fetch().then(function (user) {
             reply(user)
+        },function (err) {
+
+            console.log(err)
         })
         // return reply({result: 'Hello hapi!'})
     }
