@@ -3,8 +3,6 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
 Vue.use(Router)
 
 

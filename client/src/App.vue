@@ -27,7 +27,6 @@
 </template>
 
 <script>
-  import Hello from './components/Hello'
   import MuAppBar from 'muse-ui/src/appBar'
   import MuIconButton from 'muse-ui/src/iconButton'
   import FlexBox from 'muse-ui/src/flexbox/flexbox.vue'
@@ -54,7 +53,6 @@
       }
     },
     components: {
-      Hello,
       'mu-appbar': MuAppBar,
       'mu-icon-button': MuIconButton,
       'flexbox': FlexBox,
