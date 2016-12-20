@@ -2,14 +2,16 @@
  * Created by Hyl on 2016/11/17.
  */
 
-import * as Home from './home'
+import * as home from './home'
+import * as user from './user'
 
 export const register = (plugin, options, next) => {
     plugin.route([
-        {method: 'GET', path: '/test', config: Home.test},
-        {method: 'GET', path: '/{version}', config: Home.hello},
-        {method: 'GET', path: '/restricted', config: Home.restricted},
-        {method: 'GET', path: '/{path*}', config: Home.notFound}
+        {method: 'GET', path: '/test', config: home.test},
+        {method: 'GET', path: '/{version}', config: home.hello},
+        {method: 'GET', path: '/restricted', config: home.restricted},
+        {method: 'GET', path: '/{path*}', config: home.notFound},
+        {method: 'POST', path: '/user/login', config: user.login},
     ])
 
     next()

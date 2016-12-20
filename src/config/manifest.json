@@ -25,6 +25,16 @@
           "prefix": "/api"
         }
       }
+    },
+    {
+      "plugin": {
+        "register": "hapi-cors",
+        "options": {
+          "origins": [
+            "http://localhost:8081"
+          ]
+        }
+      }
     }
   ]
 }
