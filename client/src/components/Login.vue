@@ -5,7 +5,7 @@
         RN发布系统
       </div>
       <div class="banner-desc">
-        基于chaijs,vue的rn热更新系统的后台管理平台
+        基于hapijs,vue的rn热更新系统的后台管理平台
       </div>
     </div>
 
