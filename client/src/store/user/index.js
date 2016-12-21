@@ -2,9 +2,9 @@
  * Created by hyl on 16/10/25.
  */
 
-import {USER_INFO} from '../mutations'
-import * as actions from './actions'
-import * as getters from './getters'
+import {USER_INFO} from '../mutation-types'
+import actions from './actions'
+import getters from './getters'
 
 const user = {
   state: {

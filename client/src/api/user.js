@@ -5,8 +5,10 @@ import axios from 'axios'
 
 export default {
   login (name, pwd) {
-    return axios.post('http://localhost:8080/api/user/login', {
+    return axios.post('api/user/login', {
       name, pwd
+    }, {
+      loading: true
     })
   }
 }

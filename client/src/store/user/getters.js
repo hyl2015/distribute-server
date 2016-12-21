@@ -2,6 +2,12 @@
  * Created by hyl on 16/10/25.
  */
 
-export const getUserInfo = (state, getters)=> {
-  return state.info
+import {GET_USER_INFO} from '../getter-types'
+
+
+export default  {
+  [GET_USER_INFO]: (state, getters) => {
+    return state.info
+  }
 }
+

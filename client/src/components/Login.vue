@@ -21,7 +21,7 @@
           <mu-button @click="login">登录</mu-button>
         </flexbox-item>
       </flexbox>
-    </div>x
+    </div>
   </div>
 </template>
 
@@ -33,26 +33,21 @@
   import Button from 'muse-ui/src/raisedButton'
   import TextField from 'muse-ui/src/textField'
   import userApi from '../api/user'
-
+  import {GET_USER_INFO} from '../store/getter-types'
+  import {ACTION_USER_INFO} from '../store/action-types'
 
   import {mapGetters} from 'vuex'
   export default {
     computed: {
       ...mapGetters({
-        info: 'getUserInfo',
-        demoInfo: 'getDemoInfo',
+        info: GET_USER_INFO
       })
     },
     methods: {
-      showInfo () {
-        this.$store.dispatch('updateInfo', 'hyl')
-      },
-      showDemoInfo () {
-        this.$store.dispatch('updateDemoInfo', 'demo info')
-      },
       login () {
 //        this.$router.push('home')
         userApi.login('hyl', '123')
+//        this.$dispatch(ACTION_USER_INFO, 'hyl')
       }
     },
     components: {
