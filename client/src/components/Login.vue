@@ -12,10 +12,10 @@
     <div class="app-login">
       <flexbox orient="vertical">
         <flexbox-item>
-          <text-field label="用户名" label-float/>
+          <text-field :error-text="httpError" label="用户名" v-model="userName" label-float/>
         </flexbox-item>
         <flexbox-item>
-          <text-field label="密码" label-float/>
+          <text-field label="密码" type="password" v-model="userPwd" label-float/>
         </flexbox-item>
         <flexbox-item>
           <mu-button @click="login">登录</mu-button>
@@ -33,21 +33,28 @@
   import Button from 'muse-ui/src/raisedButton'
   import TextField from 'muse-ui/src/textField'
   import userApi from '../api/user'
-  import {GET_USER_INFO} from '../store/getter-types'
+  import {GET_USER_INFO, GET_APP_HTTP_ERROR} from '../store/getter-types'
   import {ACTION_USER_INFO} from '../store/action-types'
 
   import {mapGetters} from 'vuex'
   export default {
+    data (){
+      return {
+        userName: null,
+        userPwd: null,
+      }
+    },
     computed: {
       ...mapGetters({
-        info: GET_USER_INFO
+        info: GET_USER_INFO,
+        httpError: GET_APP_HTTP_ERROR
       })
     },
     methods: {
       login () {
-//        this.$router.push('home')
-        userApi.login('hyl', '123')
-//        this.$dispatch(ACTION_USER_INFO, 'hyl')
+        userApi.login(this.userName, this.userPwd).then(() => {
+          this.$router.push('home')
+        })
       }
     },
     components: {

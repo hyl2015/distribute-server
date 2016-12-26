@@ -23,15 +23,13 @@ if (process.env.NODE_ENV === 'production') {
 const errorHandle = (response, data = {}) => {
   if (response instanceof Error) {
     store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, '网络无法连接,请稍后重试')
-    return true
   } else if (response.status && response.status !== 200) {
     store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, '服务器开小差了,请稍后重试')
-    return true
   } else {
     let code = data.code
     switch (code) {
       default:
-        return false
+        store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, data.errMsg)
     }
   }
 }
@@ -49,11 +47,10 @@ axios.interceptors.response.use(function (response) {
   }
   let data = response.data
   if (data.code !== errorCodes.HTTP_RESPONSE_CODE_SUCCESS) {
-    if (!errorHandle(response, data)) {
-      return response
-    }
+    errorHandle(response, data)
+    return Promise.reject(data)
   } else {
-    return response
+    return data
   }
 }, function (error) {
   store.dispatch(ACTION_APP_HTTP_END)

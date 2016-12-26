@@ -18,7 +18,7 @@ if (!process.env.PRODUCTION) {
 
 manifest.registrations.push({
     plugin: {
-        register: './src/plugins/hapi-bookshelf-models',
+        register: 'hapi-bookshelf-models',
         options: {
             knex: {
                 client: 'mysql',
@@ -31,7 +31,8 @@ manifest.registrations.push({
                 }
             },
             plugins: [
-                'registry'
+                'registry',
+                'bookshelf-camelcase'
             ],
             models: './src/orm/models',
             collections: './src/orm/collections',
@@ -39,12 +40,19 @@ manifest.registrations.push({
         }
     }
 })
-
+// 5850105751099
 
 Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
     if (err) {
         console.log('server.register err:', err)
+
     }
+    //request中增加model方法，方便调用
+    server.ext('onRequest', function (request, reply) {
+        request.model = server.plugins.bookshelf.model.bind(server.plugins.bookshelf)
+        return reply.continue()
+    })
+
     server.start(() => {
         console.log('✅  Server is listening on ' + server.info.uri.toLowerCase())
     })

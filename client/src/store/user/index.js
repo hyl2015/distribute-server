@@ -8,9 +8,7 @@ import getters from './getters'
 
 const user = {
   state: {
-    info: {
-      name: 'hhhylll'
-    }
+    info: null
   },
   mutations: {
     [USER_INFO] (state, info) {

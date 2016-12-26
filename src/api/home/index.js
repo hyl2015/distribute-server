@@ -39,13 +39,12 @@ export const notFound = {
 
 export const test = {
     handler: function (request, reply) {
-        const server = request.server
-        const User = server.plugins.bookshelf.model('User')
+        const User = request.model('User')
         User.forge({
             id: 1
         }).fetch().then(function (user) {
             reply(user)
-        },function (err) {
+        }, function (err) {
 
             console.log(err)
         })
