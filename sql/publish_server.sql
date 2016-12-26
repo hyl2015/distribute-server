@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 12/26/2016 18:31:07 PM
+ Date: 12/26/2016 18:50:37 PM
 */
 
 SET NAMES utf8mb4;
@@ -26,6 +26,7 @@ CREATE TABLE `sys_menu` (
   `parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父菜单id: 0-根菜单',
   `menu_name` varchar(64) NOT NULL DEFAULT '' COMMENT '菜单名称',
   `menu_url` varchar(256) NOT NULL DEFAULT '' COMMENT '菜单链接',
+  `menu_icon` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='用户菜单';
 

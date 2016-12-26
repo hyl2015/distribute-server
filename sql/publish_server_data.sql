@@ -7,7 +7,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 --  Records of `sys_menu`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_menu` VALUES ('1', '0', '发布资源', '/resource');
+INSERT INTO `sys_menu` VALUES ('1', '0', '发布资源', '/resource', 'send');
 COMMIT;
 
 -- ----------------------------
