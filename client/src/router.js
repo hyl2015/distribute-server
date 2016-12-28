@@ -5,6 +5,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './components/Login.vue'
 import Home from './components/Home.vue'
+
 Vue.use(Router)
 
 
@@ -28,7 +29,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name === 'index22') {
+  if (to.name === 'index') {
     next('home')
   } else {
     next()
