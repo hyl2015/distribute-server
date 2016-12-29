@@ -5,7 +5,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './components/Login.vue'
 import Home from './components/Home.vue'
-
+import userApi from './api/user'
 Vue.use(Router)
 
 
@@ -30,9 +30,9 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.name === 'index') {
-    next('home')
+    userApi.isLogin().then(() => next('home'), () => next())
   } else {
-    next()
+    userApi.isLogin().then(() => next(), () => next('/'))
   }
 })
 

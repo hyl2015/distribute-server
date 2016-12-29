@@ -22,7 +22,16 @@ if (process.env.NODE_ENV === 'production') {
  */
 const errorHandle = (response, data = {}) => {
   if (response instanceof Error) {
-    store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, '网络无法连接,请稍后重试')
+    const resp = response.response
+    const status = resp.status
+    switch (status) {
+      case 401:
+        store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, '用户未登录')
+        break
+      default:
+        store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, '网络无法连接,请稍后重试')
+        break
+    }
   } else if (response.status && response.status !== 200) {
     store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, '服务器开小差了,请稍后重试')
   } else {
@@ -35,7 +44,7 @@ const errorHandle = (response, data = {}) => {
 }
 
 axios.interceptors.request.use(function (request) {
-  request.headers['Access-Token'] = lscache.get(TOKEN_STORAGE)
+  request.headers['Authorization'] = lscache.get(TOKEN_STORAGE)
   if (request.loading) {
     store.dispatch(ACTION_APP_HTTP_START)
   }
@@ -50,7 +59,7 @@ axios.interceptors.response.use(function (response) {
     errorHandle(response, data)
     return Promise.reject(data)
   } else {
-    return data
+    return data.data
   }
 }, function (error) {
   store.dispatch(ACTION_APP_HTTP_END)

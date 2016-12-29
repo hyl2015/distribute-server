@@ -4,6 +4,30 @@
 
 import {success, error} from '../utils'
 import {HTTP_ERROR} from '../http-constants'
+import {SECRET_KEY} from '../constants'
+import JWT from 'jsonwebtoken'
+const cookie_options = {
+    ttl: 365 * 24 * 60 * 60 * 1000, // expires a year from today
+    encoding: 'none',    // we already used JWT to encode
+    isSecure: false,      // warm & fuzzy feelings
+    isHttpOnly: true,    // prevent client alteration
+    clearInvalid: false, // remove invalid cookies
+    strictHeader: true,  // don't allow violations of RFC 6265
+    path: '/'            // set the cookie for all routes
+}
+
+const exportMenus = (user) => {
+    const relations = user.relations
+    const permission = relations.permission
+    if (permission) {
+        const menus = permission.relations.menus
+        if (menus) {
+            relations.menus = menus
+        }
+        delete relations.permission
+    }
+    return user
+}
 
 export const login = {
     handler: function (request, reply) {
@@ -12,7 +36,13 @@ export const login = {
             withRelated: ['permission.menus']
         }).then(function (user) {
             if (user) {
-                success(reply, user)
+                exportMenus(user)
+                const token = JWT.sign(user, SECRET_KEY)
+                success(reply, {
+                    user: user,
+                    token
+                }).header("Authorization", token)
+                    .state("token", token, cookie_options)
             } else {
                 error(reply, HTTP_ERROR.USER_NOT_EXISTS)
             }
@@ -22,3 +52,26 @@ export const login = {
         })
     }
 }
+
+export const isLogin = {
+    auth: 'jwt',
+    handler: function (request, reply) {
+        const id = request.auth.credentials.id
+        const User = request.model('User')
+        User.forge({
+            id
+        }).fetch({
+            withRelated: ['permission.menus']
+        }).then(function (user) {
+            if (user) {
+                success(reply, exportMenus(user))
+            } else {
+                error(reply, HTTP_ERROR.USER_NOT_EXISTS)
+            }
+        }, function (err) {
+            console.error(err)
+            error(reply, HTTP_ERROR.USER_NOT_EXISTS)
+        })
+    }
+}
+

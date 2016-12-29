@@ -12,6 +12,7 @@ export const register = (plugin, options, next) => {
         {method: 'GET', path: '/restricted', config: home.restricted},
         {method: 'GET', path: '/{path*}', config: home.notFound},
         {method: 'POST', path: '/user/login', config: user.login},
+        {method: 'GET', path: '/user/login', config: user.isLogin},
     ])
 
     next()

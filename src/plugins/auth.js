@@ -1,29 +1,20 @@
 /**
  * Created by Hyl on 2016/11/17.
  */
+
+import {SECRET_KEY} from '../api/constants'
 exports.register = function (plugin, options, next) {
 
     plugin.auth.strategy('jwt', 'jwt', {
-        key: 'NeverShareYourSecret', // Secret key
+        key: SECRET_KEY, // Secret key
         verifyOptions: {
             algorithms: ['HS256']
         },
         // Implement validation function
         validateFunc: (decoded, request, callback) => {
-            // NOTE: This is purely for demonstration purposes!
-            var users = [
-                {
-                    id: 1,
-                    name: 'Jon Snow'
-                }
-            ]
+            //TODO 解析用户，判断用户状态
+            return callback(null, true)
 
-            if (users.find(u => u.id === decoded.id)) {
-                return callback(null, true)
-            }
-            else {
-                return callback(null, false)
-            }
         }
     })
 
