@@ -3,7 +3,7 @@
     <drawer :open="true" docked>
       <div class="mu-appbar app-nav-bar">
         <div class="left"></div>
-        <div class="mu-appbar-title"><a href="/home" class="app-nav-title" style="display: inline-block;">Muse-UI</a>
+        <div class="mu-appbar-title"><a href="/home" class="app-nav-title" style="display: inline-block;">React Native Publish</a>
           <div class="mu-badge-container app-version"><em class="mu-badge mu-badge-secondary">
             beta
           </em></div>
