@@ -1,10 +1,23 @@
 /**
  * Created by hyl on 16/10/25.
  */
-import {APP_REQUEST_COUNT_INCREMENT, APP_REQUEST_COUNT_DECREMENT, APP_HTTP_ERROR_NORMAL} from '../mutation-types'
-import {ACTION_APP_HTTP_START, ACTION_APP_HTTP_END, ACTION_APP_HTTP_ERROR_NORMAL} from '../action-types'
+import {
+  APP_REQUEST_COUNT_INCREMENT,
+  APP_REQUEST_COUNT_DECREMENT,
+  APP_HTTP_ERROR_NORMAL,
+  APP_TITLE
+} from "../mutation-types"
+import {
+  ACTION_APP_HTTP_START,
+  ACTION_APP_HTTP_END,
+  ACTION_APP_HTTP_ERROR_NORMAL,
+  ACTION_APP_TITLE
+} from "../action-types"
 
 export default  {
+  [ACTION_APP_TITLE]: ({commit}, title) => {
+    commit(APP_TITLE, title)
+  },
   [ACTION_APP_HTTP_START]: ({commit}) => {
     commit(APP_REQUEST_COUNT_INCREMENT)
   },

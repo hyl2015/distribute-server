@@ -1,31 +1,6 @@
 <template>
   <div>
-    <drawer :open="true" docked>
-      <div class="mu-appbar app-nav-bar">
-        <div class="left"></div>
-        <div class="mu-appbar-title"><a href="/home" class="app-nav-title" style="display: inline-block;">React Native Publish</a>
-          <div class="mu-badge-container app-version"><em class="mu-badge mu-badge-secondary">
-            beta
-          </em></div>
-        </div>
-        <div class="right"></div>
-      </div>
-      <divider></divider>
-      <mu-list>
-        <mu-list-item :title="menu.menuName" v-for="menu of info.menus" @click="goMenu(menu)">
-          <mu-icon slot="left" :value="menu.menuIcon"/>
-        </mu-list-item>
-      </mu-list>
-    </drawer>
-    <div class="app-bar">
-      <mu-app-bar title="Title">
-        <mu-icon-button icon='menu' slot="left"/>
-        <mu-icon-button icon='expand_more' slot="right"/>
-      </mu-app-bar>
-    </div>
-    <div class="app-content">
-      fdsf
-    </div>
+    <h1>Hello Home</h1>
   </div>
 </template>
 
@@ -64,33 +39,5 @@
 </script>
 
 <style lang="less" scoped>
-  .app-content {
-    width: auto;
-    right: 0;
-    top: 64px;
-    left: 256px;
-    position: fixed;
-  }
 
-  .app-nav-bar {
-    background-color: #fff;
-    color: rgba(0, 0, 0, .54);
-  }
-
-  .app-nav-bar .app-nav-title {
-    color: rgba(0, 0, 0, .54);
-  }
-
-  .app-nav-bar .app-version {
-    margin-left: 10px;
-    vertical-align: text-top;
-  }
-
-  .app-bar {
-    width: auto;
-    right: 0;
-    top: 0;
-    left: 256px;
-    position: fixed;
-  }
 </style>
