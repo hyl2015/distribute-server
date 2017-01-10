@@ -28,9 +28,9 @@ const routes = [
         component: Home
       },
       {
-        path: 'resources',
+        path: '/resources',
         component: Resources,
-        alias: '/resources' //利用别名
+        alias: '/resource' //利用别名
       }
     ]
   },
