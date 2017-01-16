@@ -6,6 +6,7 @@ import Router from "vue-router";
 import Login from "./components/Login.vue";
 import Home from "./components/Home.vue";
 import Resources from "./components/Resources.vue";
+import Publish from "./components/Publish.vue";
 import NotFoundPage from "./components/NotFoundPage.vue";
 import HomeTemplate from "./components/HomeTemplate.vue";
 import userApi from "./api/user";
@@ -31,6 +32,11 @@ const routes = [
         path: '/resources',
         component: Resources,
         alias: 'resources' //利用别名
+      },
+      {
+        path: '/publish',
+        component: Publish,
+        alias: 'publish' //利用别名  别名不能和 path 一样。
       }
     ]
   },

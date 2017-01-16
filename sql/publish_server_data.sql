@@ -6,7 +6,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 BEGIN;
 TRUNCATE TABLE `sys_menu`;
-INSERT INTO `sys_menu` VALUES ('1', '0', '发布资源', '/resources', 'send');
+INSERT INTO `sys_menu` VALUES ('1', '0', '发布资源', '/resource', 'send');
+INSERT INTO `sys_menu` VALUES ('2', '0', '发布', '/publish', 'send');
 COMMIT;
 
 -- ----------------------------
@@ -23,6 +24,7 @@ COMMIT;
 BEGIN;
 TRUNCATE TABLE `sys_permission_menu`;
 INSERT INTO `sys_permission_menu` VALUES ('1', '1', '1');
+INSERT INTO `sys_permission_menu` VALUES ('2', '1', '2');
 COMMIT;
 
 -- ----------------------------

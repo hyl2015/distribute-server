@@ -8,3 +8,6 @@ export const APP_TITLE = 'app/APP_TITLE'
 
 
 export const USER_INFO = 'user/INFO'
+
+export const PUBLISH_LIST = 'publish/LIST'
+
