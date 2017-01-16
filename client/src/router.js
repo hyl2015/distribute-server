@@ -29,14 +29,12 @@ const routes = [
         component: Home
       },
       {
-        path: 'resources',
-        component: Resources,
-        alias: '/resources' //利用别名
+        path: '/resources',
+        component: Resources
       },
       {
-        path: 'publish',
-        component: Publish,
-        alias: '/publish' //利用别名  别名不能和 path 一样。
+        path: '/publish',
+        component: Publish
       }
     ]
   },
