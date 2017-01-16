@@ -30,7 +30,7 @@ const routes = [
       {
         path: '/resources',
         component: Resources,
-        alias: '/resources' //利用别名
+        alias: 'resources' //利用别名
       }
     ]
   },
