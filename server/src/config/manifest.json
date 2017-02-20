@@ -16,10 +16,10 @@
       "plugin": "hapi-auth-jwt2"
     },
     {
-      "plugin": "./src/plugins/auth"
+      "plugin": "../server/src/plugins/auth"
     },
     {
-      "plugin": "./src/api",
+      "plugin": "../server/src/api",
       "options": {
         "routes": {
           "prefix": "/api"
