@@ -1,8 +1,9 @@
 /**
  * Created by hyl on 2016/12/15.
  */
-module.exports = (baseModel, bookshelf) => {
-    return baseModel.extend({
-        tableName: 'sys_menu'
-    })
-}
+
+import baseModel from '../baseModel'
+
+export default baseModel.extend({
+  tableName: 'sys_menu'
+})

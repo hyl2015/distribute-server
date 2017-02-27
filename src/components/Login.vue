@@ -18,7 +18,8 @@
           <text-field label="密码" type="password" v-model="userPwd" label-float/>
         </flexbox-item>
         <flexbox-item>
-          <mu-button @click="login">登录</mu-button>
+          <!--<mu-button @click="login">登录</mu-button>-->
+          <mu-button @click="testQuery">登录</mu-button>
         </flexbox-item>
       </flexbox>
     </div>
@@ -33,8 +34,18 @@
   import Button from 'muse-ui/src/raisedButton'
   import TextField from 'muse-ui/src/textField'
   import userApi from '../api/user'
-  import {GET_USER_INFO, GET_APP_HTTP_ERROR} from '../store/getter-types'
+  import {
+    GET_USER_INFO,
+    GET_APP_HTTP_ERROR
+  } from '../store/getter-types'
   import {ACTION_USER_INFO} from '../store/action-types'
+  const Lokka = require('lokka').Lokka
+  const Transport = require('lokka-transport-http').Transport
+
+  const client = new Lokka({
+    transport: new Transport('http://localhost:8080/api/graphql')
+  })
+
 
   import {mapGetters} from 'vuex'
   export default {
@@ -54,6 +65,15 @@
       login () {
         userApi.login(this.userName, this.userPwd).then(() => {
           this.$router.push('home')
+        })
+      },
+      testQuery () {
+        client.query(`
+            {
+              echo
+             }
+      `).then(function (result) {
+          console.log(result)
         })
       }
     },
