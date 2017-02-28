@@ -2,7 +2,7 @@
  * Created by hyl on 2017/2/27.
  */
 import graphQLBookshelf from 'graphql-bookshelfjs'
-import Menu from '../../orm/models/menu'
+import Menu from '../models/menu'
 
 export default {
   name: 'Permission',

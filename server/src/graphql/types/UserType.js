@@ -2,7 +2,7 @@
  * Created by hyl on 2017/2/27.
  */
 import graphQLBookshelf from 'graphql-bookshelfjs'
-import User from '../../orm/models/user'
+import User from '../models/user'
 
 
 export default {
@@ -14,7 +14,7 @@ export default {
       userName: String
       userPwd: String
       salt: String
-      permission: Permission
+      permission: Permission      
     }`,
   resolvers: {
     permission: graphQLBookshelf.resolverFactory(User)
