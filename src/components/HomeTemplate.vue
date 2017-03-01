@@ -15,7 +15,7 @@
       </div>
       <divider></divider>
       <mu-list :value="value">
-        <mu-list-item :title="menu.menuName" v-for="menu of info.menus" @click="goMenu(menu)" :value="menu.menuUrl">
+        <mu-list-item :title="menu.menuName" v-for="menu of info.permission.menus" @click="goMenu(menu)" :value="menu.menuUrl">
           <mu-icon slot="left" :value="menu.menuIcon"/>
         </mu-list-item>
       </mu-list>
@@ -47,7 +47,6 @@
     GET_USER_INFO,
     GET_APP_TITLE
   } from '../store/getter-types'
-
   import {ACTION_APP_TITLE} from '../store/action-types'
 
   import {mapGetters} from 'vuex'

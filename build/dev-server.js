@@ -6,6 +6,7 @@ import webpackConfig from './webpack.dev.conf'
 import Glue from 'glue'
 import manifest from '../server/src/config/manifest.json'
 import schema from '../server/src/graphql/schema'
+import {HTTP_ERROR} from '../server/src/common/http-constants'
 
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
@@ -15,7 +16,7 @@ const port = process.env.PORT || config.dev.port
 const compiler = webpack(webpackConfig)
 
 
-if (!process.env.PRODUCTION) {
+if (process.env.NODE_ENV !== 'production') {
   manifest.registrations.push({
     plugin: {
       register: 'blipp',
@@ -34,9 +35,17 @@ manifest.registrations.push(
           return {
             schema,
             context: {request},
+            formatError: (error) => {
+              return error.originalError
+            },
             formatResponse: (response, options) => {
-
-              response['test'] = 'aaaaa'
+              if (response.errors) {
+                delete response.data
+                response.error = response.errors[0]
+                delete response.errors
+              } else {
+                response.code = HTTP_ERROR.SUCCESS.code
+              }
               return response
             }
           }
@@ -66,7 +75,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
   if (err) {
     console.log('server.register err:', err)
   }
-
+  
   server.ext('onRequest', (request, reply) => {
     if (request.path.indexOf('/api') === 0) {
       return reply.continue()
@@ -78,7 +87,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
       return reply.continue()
     })
   })
-
+  
   server.ext('onRequest', (request, reply) => {
     if (request.path.indexOf('/api') === 0) {
       return reply.continue()
@@ -90,7 +99,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
       return reply.continue()
     })
   })
-
+  
   server.ext('onPreResponse', (request, reply) => {
     if (request.path.indexOf('/api') === 0) {
       return reply.continue()
@@ -103,7 +112,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
       reply(result).type('text/html')
     })
   })
-
+  
   //request中增加model方法，方便调用
   server.ext('onRequest', function (request, reply) {
     if (request.path.indexOf('/api') < 0) {
@@ -112,7 +121,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
     // request.model = server.plugins.bookshelf.model.bind(server.plugins.bookshelf)
     return reply.continue()
   })
-
+  
   server.start(() => {
     console.log('✅  Server is listening on ' + server.info.uri.toLowerCase())
   })
