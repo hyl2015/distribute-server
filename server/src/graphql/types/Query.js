@@ -19,6 +19,6 @@ export default {
       return parentResolver(modelInstance, {id}, context, info)
       // return graphqlError(110, '测试错误')
     }
-    
+
   }
 }

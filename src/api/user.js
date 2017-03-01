@@ -8,6 +8,7 @@ import {GET_USER_INFO} from '../store/getter-types'
 import {TOKEN_STORAGE} from '../common/constants'
 import lscache from 'lscache'
 import lokka from '../plugins/lokka-client'
+import {QUERY_USER_LOGIN} from './queries/userQuery'
 
 export default {
   login (userName, userPwd) {
@@ -26,26 +27,11 @@ export default {
     if (store.getters[GET_USER_INFO]) {
       return Promise.resolve()
     }
-    
-    return lokka.query(`
-            {
-              login{
-                id
-                nickName
-                permission{
-                  menus{
-                    menuName
-                    menuUrl
-                    menuIcon
-                  }
-                }
 
-              }
-             }
-      `, null, {loading: true}).then((data) => {
+    return lokka.query(QUERY_USER_LOGIN, {loading: true}).then((data) => {
       store.dispatch(ACTION_USER_INFO, data.login)
       return Promise.resolve()
     }).catch(() => Promise.reject())
-    
+
   }
 }
