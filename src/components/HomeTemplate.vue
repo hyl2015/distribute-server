@@ -15,7 +15,8 @@
       </div>
       <divider></divider>
       <mu-list :value="value">
-        <mu-list-item :title="menu.menuName" v-for="menu of info.permission.menus" @click="goMenu(menu)" :value="menu.menuUrl">
+        <mu-list-item :title="menu.menuName" v-for="menu of info.permission.menus" @click="goMenu(menu)"
+                      :value="menu.menuUrl">
           <mu-icon slot="left" :value="menu.menuIcon"/>
         </mu-list-item>
       </mu-list>
@@ -24,6 +25,9 @@
       <mu-app-bar :title="appTitle">
         <mu-icon-button icon='menu' slot="left" @click="toggleMenuPanel"/>
         <!--<mu-icon-button icon='expand_more' slot="right"/>-->
+        <mu-icon-menu icon="more_vert" slot="right">
+          <mu-menu-item title="设置" @click="openSettingDialog"/>
+        </mu-icon-menu>
       </mu-app-bar>
     </div>
     <div class="app-content" :class="{'app-content-hide':!menuOpen}">
@@ -40,6 +44,9 @@
   import MuAppBar from 'muse-ui/src/appBar'
   import MuIconButton from 'muse-ui/src/iconButton'
   import MuContentBlock from 'muse-ui/src/contentBlock'
+  import MuIconMenu from 'muse-ui/src/iconMenu'
+  import {menuItem as MuMenuItem} from 'muse-ui/src/menu'
+
   import List from 'muse-ui/src/list/list.vue'
   import ListItem from 'muse-ui/src/list/listItem.vue'
   import MuIcon from 'muse-ui/src/icon'
@@ -70,6 +77,8 @@
       MuIconButton,
       'mu-list': List,
       'mu-list-item': ListItem,
+      MuMenuItem,
+      MuIconMenu,
       MuIcon,
       MuContentBlock
     },
@@ -86,6 +95,9 @@
         this.value = null
         this.$dispatch(ACTION_APP_TITLE, '首页')
         this.$router.push('home')
+      },
+      openSettingDialog () {
+          alert('系统设置')
       }
     }
   }
