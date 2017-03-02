@@ -11,11 +11,21 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 12/26/2016 18:50:37 PM
+ Date: 03/02/2017 22:31:24 PM
 */
 
-SET NAMES utf8mb4;
+SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+--  Table structure for `sys_config`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_config`;
+CREATE TABLE `sys_config` (
+  `key` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Table structure for `sys_menu`
@@ -28,7 +38,7 @@ CREATE TABLE `sys_menu` (
   `menu_url` varchar(256) NOT NULL DEFAULT '' COMMENT '菜单链接',
   `menu_icon` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='用户菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='用户菜单';
 
 -- ----------------------------
 --  Table structure for `sys_permission`
@@ -49,7 +59,7 @@ CREATE TABLE `sys_permission_menu` (
   `permission_id` int(10) unsigned NOT NULL COMMENT '权限ID',
   `menu_id` int(10) unsigned NOT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='权限菜单关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='权限菜单关联表';
 
 -- ----------------------------
 --  Table structure for `user`
