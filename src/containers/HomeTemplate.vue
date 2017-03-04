@@ -35,6 +35,7 @@
         <router-view></router-view>
       </mu-content-block>
     </div>
+    <setting-dialog :open="showSetting" @on-confirm="closeDialog" @on-cancel="showSetting=false"></setting-dialog>
   </div>
 </template>
 
@@ -46,10 +47,12 @@
   import MuContentBlock from 'muse-ui/src/contentBlock'
   import MuIconMenu from 'muse-ui/src/iconMenu'
   import {menuItem as MuMenuItem} from 'muse-ui/src/menu'
-
   import List from 'muse-ui/src/list/list.vue'
   import ListItem from 'muse-ui/src/list/listItem.vue'
   import MuIcon from 'muse-ui/src/icon'
+  import SettingDialog from '../components/SettingDialog.vue'
+
+
   import {
     GET_USER_INFO,
     GET_APP_TITLE
@@ -61,7 +64,8 @@
     data () {
       return {
         menuOpen: true,
-        value: null
+        value: null,
+        showSetting: false
       }
     },
     computed: {
@@ -80,7 +84,8 @@
       MuMenuItem,
       MuIconMenu,
       MuIcon,
-      MuContentBlock
+      MuContentBlock,
+      SettingDialog
     },
     methods: {
       goMenu (menu) {
@@ -97,7 +102,10 @@
         this.$router.push('home')
       },
       openSettingDialog () {
-          alert('系统设置')
+        this.showSetting = true
+      },
+      closeDialog () {
+        this.showSetting = false
       }
     }
   }

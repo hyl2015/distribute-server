@@ -3,12 +3,12 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from './components/Login.vue'
-import Home from './components/Home.vue'
-import Resources from './components/Resources.vue'
-import Publish from './components/Publish.vue'
-import NotFoundPage from './components/NotFoundPage.vue'
-import HomeTemplate from './components/HomeTemplate.vue'
+import Login from './containers/Login.vue'
+import Home from './containers/Home.vue'
+import Resources from './containers/Resources.vue'
+import Publish from './containers/Publish.vue'
+import NotFoundPage from './containers/NotFoundPage.vue'
+import HomeTemplate from './containers/HomeTemplate.vue'
 import userApi from './api/user'
 Vue.use(Router)
 
