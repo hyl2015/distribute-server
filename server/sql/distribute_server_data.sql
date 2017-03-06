@@ -2,6 +2,13 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+--  Records of `sys_config`
+-- ----------------------------
+BEGIN;
+INSERT INTO `sys_config` VALUES ('config.app.dir', '/var/app'), ('config.resource.dir', '/var/res');
+COMMIT;
+
+-- ----------------------------
 --  Records of `sys_menu`
 -- ----------------------------
 BEGIN;
