@@ -5,16 +5,16 @@
  Source Server Type    : MySQL
  Source Server Version : 50717
  Source Host           : localhost
- Source Database       : publish_server
+ Source Database       : distribute_server
 
  Target Server Type    : MySQL
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 03/02/2017 22:31:24 PM
+ Date: 03/06/2017 15:14:37 PM
 */
 
-SET NAMES utf8;
+SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------

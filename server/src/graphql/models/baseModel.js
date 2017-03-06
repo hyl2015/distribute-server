@@ -11,7 +11,7 @@ const knex = Knex({
     host: 'localhost',
     user: 'root',
     password: '123456',
-    database: 'publish_server',
+    database: 'distribute_server',
     port: 3306
   }
 })
