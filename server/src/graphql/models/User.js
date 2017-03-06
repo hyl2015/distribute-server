@@ -1,8 +1,8 @@
 /**
  * Created by hyl on 2016/12/15.
  */
-import Permission from './permission'
-import baseModel from './baseModel'
+import Permission from './Permission'
+import baseModel from './BaseModel'
 
 export default baseModel.extend({
   tableName: 'user',

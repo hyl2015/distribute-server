@@ -7,8 +7,8 @@
         <!--<mu-tab value="tab3" title="TAB ACTIVE"/>-->
       </mu-tabs>
       <div v-if="activeTab === 'tab1'">
-        <mu-text-field label="设置资源发布目录" full-width hintText="资源发布目录"/>
-        <mu-text-field label="设置APP发布目录" full-width hintText="APP发布目录"/>
+        <mu-text-field label="设置资源发布目录" full-width hintText="资源发布目录" :value="configObj['config.resource.dir']"/>
+        <mu-text-field label="设置APP发布目录" full-width hintText="APP发布目录" :value="configObj['config.app.dir']"/>
         <br/>
       </div>
       <div v-if="activeTab === 'tab2'">
@@ -33,8 +33,12 @@
 <script>
   import MuDialog from 'muse-ui/src/dialog'
   import MuFlatButton from 'muse-ui/src/flatButton'
-  import {tab as MuTab, tabs as MuTabs} from 'muse-ui/src/tabs'
+  import {
+    tab as MuTab,
+    tabs as MuTabs
+  } from 'muse-ui/src/tabs'
   import  MuTextField from 'muse-ui/src/textField'
+  import sysApi from '../api/sys'
 
   export default{
     props: {
@@ -45,8 +49,18 @@
     },
     data () {
       return {
-        openDialog2: null,
-        activeTab: 'tab1'
+        activeTab: 'tab1',
+        configObj: {}
+      }
+    },
+    watch: {
+      open (val) {
+        if (val) {
+          const self = this
+          sysApi.getConfigs().then(function (data) {
+            self.configObj = data
+          })
+        }
       }
     },
     methods: {
@@ -54,7 +68,7 @@
         this.activeTab = val
       },
       onConfirm(){
-
+        sysApi.updateConfigs()
         this.$emit('on-confirm')
       },
       cancel () {

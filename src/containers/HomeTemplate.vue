@@ -51,6 +51,7 @@
   import ListItem from 'muse-ui/src/list/listItem.vue'
   import MuIcon from 'muse-ui/src/icon'
   import SettingDialog from '../components/SettingDialog.vue'
+  import userApi from '../api/user'
 
 
   import {
@@ -87,7 +88,16 @@
       MuContentBlock,
       SettingDialog
     },
+    created () {
+      this.fetchData()
+    },
+    watch: {
+      '$route': 'fetchData'
+    },
     methods: {
+      fetchData() {
+        userApi.getUserInfo()
+      },
       goMenu (menu) {
         this.value = menu.menuUrl
         this.$dispatch(ACTION_APP_TITLE, menu.menuName)

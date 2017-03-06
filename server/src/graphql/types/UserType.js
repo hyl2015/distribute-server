@@ -2,7 +2,7 @@
  * Created by hyl on 2017/2/27.
  */
 import graphQLBookshelf from 'graphql-bookshelfjs'
-import User from '../models/user'
+import User from '../models/User'
 
 
 export default {

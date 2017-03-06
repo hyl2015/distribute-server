@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const errorHandle = (status, data = {}) => {
-
+  
   switch (status) {
     case 200:
       let code = data.code
@@ -50,11 +50,32 @@ const client = new Lokka({
 
 
 export  default {
-  query({queryStr, args}, config) {
+  query(queryStr, vars, config) {
     if (config.loading) {
       store.dispatch(ACTION_APP_HTTP_START)
     }
-    return client.query(queryStr, args).then((result) => {
+    return client.query(queryStr, vars).then((result) => {
+      if (config.loading) {
+        store.dispatch(ACTION_APP_HTTP_END)
+      }
+      if (result.error) {
+        errorHandle(200, result.error)
+        return Promise.reject(result)
+      }
+      return Promise.resolve(result)
+    }).catch((errorMsg) => {
+      const reg = /code:\s*([\d]+)/g
+      reg.test(errorMsg)
+      errorHandle(Number.parseInt(RegExp.$1))
+      return Promise.reject(result)
+    })
+  },
+  mutate(mutationStr, vars, config) {
+    if (config.loading) {
+      store.dispatch(ACTION_APP_HTTP_START)
+    }
+    
+    return client.mutate(mutationStr, vars).then((result) => {
       if (config.loading) {
         store.dispatch(ACTION_APP_HTTP_END)
       }

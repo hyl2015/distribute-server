@@ -1,10 +1,14 @@
 /**
  * Created by Hyl on 2017/3/1.
  */
-export const QUERY_USER_LOGIN = {
-  queryStr: `
+export const QUERY_USER_LOGIN = `
             {
-              login{
+              base_isLogin
+             }
+      `
+export const QUERY_USER_INFO = `
+            {
+              base_userInfo{
                 id
                 nickName
                 permission{
@@ -14,8 +18,6 @@ export const QUERY_USER_LOGIN = {
                     menuIcon
                   }
                 }
-
               }
-             }
+            }
       `
-}

@@ -3,14 +3,18 @@
  */
 import MenuType from './MenuType'
 import UserType from './UserType'
+import ConfigType from './ConfigType'
 import PermissionType from './PermissionType'
-import Query from './Query'
+import Query from './QueryType'
+import MutationType from './MutationType'
 
 
 const types = [
   MenuType,
   UserType,
+  ConfigType,
   PermissionType,
+  MutationType,
   Query
 ]
 
