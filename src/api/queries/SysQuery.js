@@ -13,9 +13,6 @@ export const QUERY_SYS_CONFIGS = `
 
 export const MUTATION_SYS_CONFIGS = `
         ($cfgs: String){
-            updateConfigs: sys_updateConfigs(cfgs:$cfgs) {
-                key
-                value
-            }
+            sys_configs: sys_updateConfigs(cfgs:$cfgs)
         }
 `

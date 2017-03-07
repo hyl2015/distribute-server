@@ -36,7 +36,7 @@ manifest.registrations.push(
             schema,
             context: {request},
             formatError: (error) => {
-              return error.originalError
+              return error.originalError || new Error(error.message)
             },
             formatResponse: (response, options) => {
               if (response.errors && response.errors.length > 0) {
@@ -75,7 +75,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
   if (err) {
     console.log('server.register err:', err)
   }
-
+  
   server.ext('onRequest', (request, reply) => {
     if (request.path.indexOf('/api') === 0) {
       return reply.continue()
@@ -87,7 +87,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
       return reply.continue()
     })
   })
-
+  
   server.ext('onRequest', (request, reply) => {
     if (request.path.indexOf('/api') === 0) {
       return reply.continue()
@@ -99,7 +99,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
       return reply.continue()
     })
   })
-
+  
   server.ext('onPreResponse', (request, reply) => {
     if (request.path.indexOf('/api') === 0) {
       return reply.continue()
@@ -112,7 +112,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
       reply(result).type('text/html')
     })
   })
-
+  
   //request中增加model方法，方便调用
   server.ext('onRequest', function (request, reply) {
     if (request.path.indexOf('/api') < 0) {
@@ -121,7 +121,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
     // request.model = server.plugins.bookshelf.model.bind(server.plugins.bookshelf)
     return reply.continue()
   })
-
+  
   server.start(() => {
     console.log('✅  Server is listening on ' + server.info.uri.toLowerCase())
   })

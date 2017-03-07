@@ -5,16 +5,18 @@ import {
   APP_REQUEST_COUNT_DECREMENT,
   APP_REQUEST_COUNT_INCREMENT,
   APP_HTTP_ERROR_NORMAL,
-  APP_TITLE
-} from "../mutation-types"
-import actions from "./actions"
-import getters from "./getters"
+  APP_TITLE,
+  APP_SHOW_TOAST_MSG
+} from '../mutation-types'
+import actions from './actions'
+import getters from './getters'
 
 const user = {
   state: {
     requestCount: 0,
     httpError: null,
-    appTitle: '首页'
+    appTitle: '首页',
+    toastMsg: null
   },
   mutations: {
     [APP_REQUEST_COUNT_DECREMENT] (state) {
@@ -27,6 +29,9 @@ const user = {
     },
     [APP_HTTP_ERROR_NORMAL] (state, msg) {
       state.httpError = msg
+    },
+    [APP_SHOW_TOAST_MSG] (state, msg) {
+      state.toastMsg = msg
     },
     [APP_TITLE] (state, title) {
       state.appTitle = title

@@ -25,14 +25,7 @@ export default {
     return lokka.mutate(MUTATION_SYS_CONFIGS, {
       cfgs
     }, {loading: true}).then((data) => {
-      const configs = data.sys_configs
-      
-      const configObj = {}
-      
-      for (const config of configs) {
-        configObj[config.key] = config.value
-      }
-      return Promise.resolve(configObj)
+      return Promise.resolve(data)
     }).catch(() => Promise.reject())
   }
 }

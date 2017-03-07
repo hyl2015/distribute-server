@@ -35,7 +35,7 @@
         <router-view></router-view>
       </mu-content-block>
     </div>
-    <setting-dialog :open="showSetting" @on-confirm="closeDialog" @on-cancel="showSetting=false"></setting-dialog>
+    <setting-dialog :open="showSetting" @on-close="showSetting=false"></setting-dialog>
   </div>
 </template>
 
@@ -113,9 +113,6 @@
       },
       openSettingDialog () {
         this.showSetting = true
-      },
-      closeDialog () {
-        this.showSetting = false
       }
     }
   }

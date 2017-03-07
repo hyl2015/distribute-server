@@ -5,14 +5,16 @@ import {
   APP_REQUEST_COUNT_INCREMENT,
   APP_REQUEST_COUNT_DECREMENT,
   APP_HTTP_ERROR_NORMAL,
-  APP_TITLE
-} from "../mutation-types"
+  APP_TITLE,
+  APP_SHOW_TOAST_MSG
+} from '../mutation-types'
 import {
   ACTION_APP_HTTP_START,
   ACTION_APP_HTTP_END,
   ACTION_APP_HTTP_ERROR_NORMAL,
+  ACTION_APP_SHOW_TOAST_MSGA,
   ACTION_APP_TITLE
-} from "../action-types"
+} from '../action-types'
 
 export default  {
   [ACTION_APP_TITLE]: ({commit}, title) => {
@@ -28,6 +30,12 @@ export default  {
     commit(APP_HTTP_ERROR_NORMAL, msg)
     setTimeout(function () {
       commit(APP_HTTP_ERROR_NORMAL, null)
+    }, 3000)
+  },
+  [ACTION_APP_SHOW_TOAST_MSGA]: ({commit}, msg) => {
+    commit(APP_SHOW_TOAST_MSG, msg)
+    setTimeout(function () {
+      commit(APP_SHOW_TOAST_MSG, null)
     }, 3000)
   },
 }

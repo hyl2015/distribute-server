@@ -7,8 +7,8 @@
         <!--<mu-tab value="tab3" title="TAB ACTIVE"/>-->
       </mu-tabs>
       <div v-if="activeTab === 'tab1'">
-        <mu-text-field label="设置资源发布目录" full-width hintText="资源发布目录" :value="configObj['config.resource.dir']"/>
-        <mu-text-field label="设置APP发布目录" full-width hintText="APP发布目录" :value="configObj['config.app.dir']"/>
+        <mu-text-field label="设置资源发布目录" full-width hintText="资源发布目录" v-model="configObj['config.resource.dir']"/>
+        <mu-text-field label="设置APP发布目录" full-width hintText="APP发布目录" v-model="configObj['config.app.dir']"/>
         <br/>
       </div>
       <div v-if="activeTab === 'tab2'">
@@ -25,8 +25,10 @@
       </div>
 
       <mu-flat-button label="保存" slot="actions" primary @click="onConfirm"/>
-      <mu-flat-button label="取消" slot="actions" @click="cancel"/>
+      <mu-flat-button label="关闭" slot="actions" @click="close"/>
     </mu-dialog>
+
+
   </div>
 </template>
 
@@ -39,6 +41,7 @@
   } from 'muse-ui/src/tabs'
   import  MuTextField from 'muse-ui/src/textField'
   import sysApi from '../api/sys'
+  import {ACTION_APP_SHOW_TOAST_MSGA} from '../store/action-types'
 
   export default{
     props: {
@@ -68,11 +71,13 @@
         this.activeTab = val
       },
       onConfirm(){
-        sysApi.updateConfigs()
-        this.$emit('on-confirm')
+        const self = this
+        sysApi.updateConfigs(JSON.stringify(this.configObj)).then(function () {
+          self.$dispatch(ACTION_APP_SHOW_TOAST_MSGA, '保存成功～')
+        })
       },
-      cancel () {
-        this.$emit('on-cancel')
+      close () {
+        this.$emit('on-close')
       }
     },
     components: {
