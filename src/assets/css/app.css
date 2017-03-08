@@ -5,3 +5,13 @@ html, body {
 .app-login > div {
   text-align: center;
 }
+
+.popup-top {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 375px;
+}

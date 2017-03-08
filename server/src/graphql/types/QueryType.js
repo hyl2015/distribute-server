@@ -3,7 +3,8 @@
  */
 import graphQLBookshelf from 'graphql-bookshelfjs'
 import User from '../models/User'
-import Config from '../models/Config'
+import {graphqlError} from '../../common/utils'
+import {HTTP_ERROR} from '../../common/http-constants'
 
 export default {
   name: 'Query',
@@ -12,11 +13,12 @@ export default {
       users: [User]
       base_isLogin: Boolean
       base_userInfo: User
-      sys_configs: [Config]
+      sys: Sys
+      res_createInfo:ResCreateInfo
     }`,
   resolvers: {
     users: graphQLBookshelf.resolverFactory(User),
-    sys_configs: graphQLBookshelf.resolverFactory(Config),
+    sys: () => ({}),
     base_isLogin: (modelInstance, args, context, info) => {
       return User.forge({
         id: context.request.auth.credentials.id
@@ -24,17 +26,18 @@ export default {
         if (user) {
           return true
         } else {
-          throw new Error('用户不存在')
+          return graphqlError(HTTP_ERROR.USER_NOT_EXISTS)
         }
       }, function (err) {
-        throw new Error('查询出错')
+        console.error(err)
+        return graphqlError(HTTP_ERROR.SERVER_ERROR)
       })
     },
     base_userInfo: (modelInstance, args, context, info) => {
       const id = context.request.auth.credentials.id
       const parentResolver = graphQLBookshelf.resolverFactory(User)
       return parentResolver(modelInstance, {id}, context, info)
-    }
-    
+    },
+    res_createInfo: () => ({})
   }
 }

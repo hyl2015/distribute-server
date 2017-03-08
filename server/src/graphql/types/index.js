@@ -5,11 +5,15 @@ import MenuType from './MenuType'
 import UserType from './UserType'
 import ConfigType from './ConfigType'
 import PermissionType from './PermissionType'
+import ResCreateInfoType from './ResCreateInfoType'
+import SysType from './SysType'
 import Query from './QueryType'
 import MutationType from './MutationType'
 
 
 const types = [
+  ResCreateInfoType,
+  SysType,
   MenuType,
   UserType,
   ConfigType,

@@ -11,12 +11,13 @@ import {
 export default {
   getConfigs () {
     return lokka.query(QUERY_SYS_CONFIGS, null, {loading: true}).then((data) => {
-      const configs = data.sys_configs
+      const configs = data.sys.configs
       
       const configObj = {}
       
       for (const config of configs) {
         configObj[config.key] = config.value
+        configObj[config.key + '_id'] = config.id
       }
       return Promise.resolve(configObj)
     }).catch(() => Promise.reject())

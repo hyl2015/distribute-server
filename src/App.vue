@@ -2,7 +2,9 @@
   <div id="app">
     <router-view></router-view>
     <toast v-show="httpError" :message="httpError"></toast>
-    <toast v-show="toastMsg" :message="toastMsg"></toast>
+    <mu-popup position="top" popup-class="popup-top" :overlay="false" :open="!!toastMsg">
+      {{toastMsg}}
+    </mu-popup>
     <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
@@ -15,6 +17,7 @@
     GET_APP_TOAST_MSG
   } from './store/getter-types'
   import Toast from 'muse-ui/src/toast'
+  import MuPopup from 'muse-ui/src/popup'
   export default {
     name: 'app',
     computed: {
@@ -38,7 +41,8 @@
       }
     },
     components: {
-      Toast
+      Toast,
+      MuPopup
     }
   }
 </script>

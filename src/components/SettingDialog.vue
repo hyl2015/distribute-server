@@ -7,6 +7,7 @@
         <!--<mu-tab value="tab3" title="TAB ACTIVE"/>-->
       </mu-tabs>
       <div v-if="activeTab === 'tab1'">
+        <mu-text-field label="设置RN项目git目录" full-width hintText="RN项目git目录" v-model="configObj['config.rn.dir']"/>
         <mu-text-field label="设置资源发布目录" full-width hintText="资源发布目录" v-model="configObj['config.resource.dir']"/>
         <mu-text-field label="设置APP发布目录" full-width hintText="APP发布目录" v-model="configObj['config.app.dir']"/>
         <br/>

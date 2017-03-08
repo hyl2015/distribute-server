@@ -7,6 +7,7 @@ export default {
   name: 'Config',
   typeStr: `
   type Config {    
+    id: Int!
     key: String
     value: String
   }`,

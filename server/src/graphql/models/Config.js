@@ -4,6 +4,5 @@
 import baseModel from './BaseModel'
 
 export default baseModel.extend({
-  tableName: 'sys_config',
-  idAttribute: 'key'
+  tableName: 'sys_config'
 })

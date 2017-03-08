@@ -3,9 +3,12 @@
  */
 export const QUERY_SYS_CONFIGS = `
             {
-              sys_configs{
-                key
-                value
+              sys{
+                configs{
+                  id
+                  key
+                  value
+                 }
               }
              }
       `

@@ -15,9 +15,9 @@ export const error = (replay, errorObj) => {
     errMsg: errorObj.msg
   })
 }
-export const graphqlError = (code, message) => {
+export const graphqlError = ({code, msg}) => {
   return Promise.reject({
     code,
-    message
+    message: msg
   })
 }
