@@ -5,10 +5,10 @@
     </div>
 
 
-    <mu-dialog :open="showCreateDlg" title="创建新版本">
-      <resource-create></resource-create>
-      <mu-flat-button label="关闭" slot="actions" @click="showCreateDlg=false"/>
-    </mu-dialog>
+    <resource-create-dialog :open="showCreateDlg"
+                            @on-close="showCreateDlg=false"></resource-create-dialog>
+
+    <resource-list></resource-list>
   </div>
 </template>
 
@@ -19,12 +19,10 @@
     flexbox as MuFlexbox,
     flexboxItem as MuFlexboxItem
   } from 'muse-ui/src/flexbox'
-  import MuDialog from 'muse-ui/src/dialog'
-  import MuFlatButton from 'muse-ui/src/flatButton'
   import MuBtn from 'muse-ui/src/raisedButton'
-  import ResourceCreate from '../components/ResourceCreate.vue'
+  import ResourceCreateDialog from '../components/ResourceCreateDialog.vue'
+  import ResourceList from '../components/ResourceList.vue'
   import publishApi from '../api/publish'
-
   import {mapGetters} from 'vuex'
 
   export default {
@@ -34,21 +32,18 @@
       }
     },
     created () {
-
+      publishApi.resVersionList(1, 10)
     },
     components: {
       MuFlexbox,
       MuFlexboxItem,
-      MuDialog,
-      MuFlatButton,
       MuBtn,
-      ResourceCreate
+      ResourceCreateDialog,
+      ResourceList
     },
     methods: {
       createNewVersion () {
-        const self = this
-        self.showCreateDlg = true
-        publishApi.getCreateInfo()
+        this.showCreateDlg = true
       }
     }
   }

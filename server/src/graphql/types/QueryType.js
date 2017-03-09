@@ -14,11 +14,12 @@ export default {
       base_isLogin: Boolean
       base_userInfo: User
       sys: Sys
-      res_createInfo:ResCreateInfo
+      res: Res      
     }`,
   resolvers: {
     users: graphQLBookshelf.resolverFactory(User),
     sys: () => ({}),
+    res: () => ({}),
     base_isLogin: (modelInstance, args, context, info) => {
       return User.forge({
         id: context.request.auth.credentials.id
@@ -37,7 +38,6 @@ export default {
       const id = context.request.auth.credentials.id
       const parentResolver = graphQLBookshelf.resolverFactory(User)
       return parentResolver(modelInstance, {id}, context, info)
-    },
-    res_createInfo: () => ({})
+    }
   }
 }

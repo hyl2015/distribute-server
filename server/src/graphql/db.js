@@ -18,6 +18,7 @@ const knex = Knex({
 })
 
 const bookshelf = Bookshelf(knex)
+bookshelf.plugin('pagination')
 bookshelf.plugin('registry')
 bookshelf.plugin('bookshelf-camelcase')
 

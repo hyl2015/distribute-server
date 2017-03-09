@@ -9,4 +9,5 @@ export const ACTION_APP_SHOW_TOAST_MSGA = 'action/app/ACTION_APP_SHOW_TOAST_MSGA
 
 export const ACTION_USER_INFO = 'action/user/INFO'
 
-export const ACTION_PUBLISH_LIST = 'action/publish/LIST'
+export const ACTION_RES_VERSION_LIST = 'action/res/ACTION_RES_VERSION_LIST'
+export const ACTION_RES_VERSION_PAGINATION = 'action/res/ACTION_RES_VERSION_PAGINATION'

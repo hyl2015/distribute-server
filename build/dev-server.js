@@ -36,6 +36,7 @@ manifest.registrations.push(
             schema,
             context: {request},
             formatError: (error) => {
+              console.error(error.message)
               return error.originalError || new Error(error.message)
             },
             formatResponse: (response, options) => {

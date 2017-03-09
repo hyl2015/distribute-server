@@ -1,21 +1,28 @@
 /**
  * Created by wolf on 17/01/15.
  */
-
-import {PUBLISH_LIST} from '../mutation-types'
+import {
+  RES_VERSION_LIST,
+  RES_VERSION_PAGINATION
+} from '../mutation-types'
 import actions from './actions'
 import getters from './getters'
 
 const publish = {
   state: {
-    list: [],
-    total: 1,
-    current: 1
+    resVersionList: [],
+    resVersionListPagination: {
+      page: 1,
+      pageSize: 20,
+      total: 0
+    }
   },
   mutations: {
-    [PUBLISH_LIST] (state, list) {
-      state.list = list
-      state.total = list.length
+    [RES_VERSION_LIST] (state, list) {
+      state.resVersionList = list
+    },
+    [RES_VERSION_PAGINATION] (state, pagination) {
+      state.resVersionListPagination = Object.assign(state.resVersionListPagination, pagination)
     }
   },
   actions,

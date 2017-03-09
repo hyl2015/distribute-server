@@ -8,6 +8,5 @@ export const GET_APP_TITLE = 'getter/app/GET_APP_TITLE'
 export const GET_APP_TOAST_MSG = 'getter/app/GET_APP_TOAST_MSG'
 
 
-export const GET_PUBLISH_LIST= 'getter/publish/LIST'
-export const GET_PUBLISH_LIST_TOTAL= 'getter/publish/LIST_TOTAL'
-export const GET_PUBLISH_LIST_CURRENT= 'getter/publish/LIST_CURRENT'
+export const GET_RES_VERSION_LIST = 'getter/res/GET_RES_VERSION_LIST'
+export const GET_RES_VERSION_PAGINATION = 'getter/res/RES_VERSION_PAGINATION'

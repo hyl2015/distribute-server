@@ -16,7 +16,7 @@
       <divider></divider>
       <mu-list :value="value">
         <mu-list-item :title="menu.menuName" v-for="menu of info.permission.menus" @click="goMenu(menu)"
-                      :value="menu.menuUrl">
+                      :value="menu.menuUrl" :key="menu.id">
           <mu-icon slot="left" :value="menu.menuIcon"/>
         </mu-list-item>
       </mu-list>

@@ -10,5 +10,6 @@ export const APP_SHOW_TOAST_MSG = 'app/APP_SHOW_TOAST_MSG'
 
 export const USER_INFO = 'user/INFO'
 
-export const PUBLISH_LIST = 'publish/LIST'
+export const RES_VERSION_LIST = 'res/RES_VERSION_LIST'
+export const RES_VERSION_PAGINATION = 'res/RES_VERSION_PAGINATION'
 
