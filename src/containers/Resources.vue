@@ -6,6 +6,7 @@
 
 
     <resource-create-dialog :open="showCreateDlg"
+                            @on-create="onCreate"
                             @on-close="showCreateDlg=false"></resource-create-dialog>
 
     <resource-list></resource-list>
@@ -32,7 +33,7 @@
       }
     },
     created () {
-      publishApi.resVersionList(1, 10)
+        this.fetchData()
     },
     components: {
       MuFlexbox,
@@ -44,6 +45,13 @@
     methods: {
       createNewVersion () {
         this.showCreateDlg = true
+      },
+      onCreate () {
+        this.showCreateDlg = false
+        this.fetchData()
+      },
+      fetchData () {
+        publishApi.resVersionList(1, 10)
       }
     }
   }
@@ -51,6 +59,6 @@
 
 <style scoped>
   .resources-header {
-    float: right;
+    text-align: right;
   }
 </style>

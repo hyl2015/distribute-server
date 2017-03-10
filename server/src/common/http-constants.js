@@ -22,4 +22,12 @@ export const HTTP_ERROR = {
     code: 20001,
     msg: 'rn项目目录不存在！'
   },
+  RES_PUBLISH_RES_PATH_NOT_EXISTS: {
+    code: 20002,
+    msg: '资源配置目录不存在！'
+  },
+  RES_PUBLISH_RES_ERROR: {
+    code: 20003,
+    msg: '资源打包出错！'
+  },
 }

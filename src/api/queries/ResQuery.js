@@ -39,3 +39,46 @@ export const QUERY_RES_VERSION_LIST=`
               }
             }
 `
+export const QUERY_RES_VERSION_INFO=`
+        query versionInfo($id: Int){
+              res{
+                versionInfo(id: $id){                  
+                  id
+                  ver
+                  status
+                  gitVer
+                  preId
+                  updatedAt                  
+                }
+              }
+            }
+`
+
+export const MUTATION_RES_VER_PACKAGING=`
+        ($id: Int){
+            res_packaging: res_verPackaging(id: $id){
+                  id
+                  ver
+                  status
+                  gitVer
+                  preId
+                  updatedAt   
+            }
+        }
+`
+export const MUTATION_RES_VER_ONLINE=`
+        ($id: Int){
+            res_online: res_verOnLine(id: $id)
+        }
+`
+export const MUTATION_RES_VER_OFFLINE=`
+        ($id: Int){
+            res_offline: res_verOffLine(id: $id)
+        }
+`
+export const MUTATION_RES_VER_REMOVE=`
+        ($id: Int){
+            res_remove: res_verRemove(id: $id)
+        }
+`
+

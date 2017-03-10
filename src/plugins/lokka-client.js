@@ -4,11 +4,9 @@
 import Lokka from 'lokka'
 import HttpTransport from 'lokka-transport-http'
 import {
-  TOKEN_STORAGE,
   SERVER_ADDRESS,
   PRODUCT_SERVER
 } from '../common/constants'
-import lscache from 'lscache'
 import store from '../store'
 import {
   ACTION_APP_HTTP_START,
@@ -23,14 +21,27 @@ if (process.env.NODE_ENV === 'production') {
   graphqlUrl = `${SERVER_ADDRESS}api/graphql`
 }
 
-const errorHandle = (status, data = {}) => {
+const errorHandle = (error) => {
   
+  const message = error.message
+  let errMsg
+  let code
+  let status = 200
+  try {
+    const tmpObj = JSON.parse(message)
+    code = tmpObj.code
+    errMsg = tmpObj.message
+    
+  } catch (e) {
+    const reg = /code:\s*([\d]+)/g
+    reg.test(message)
+    status = Number.parseInt(RegExp.$1)
+  }
   switch (status) {
     case 200:
-      let code = data.code
       switch (code) {
         default:
-          store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, data.errMsg)
+          store.dispatch(ACTION_APP_HTTP_ERROR_NORMAL, errMsg)
       }
       break
     case 401:
@@ -44,7 +55,10 @@ const errorHandle = (status, data = {}) => {
 
 const client = new Lokka({
   transport: new HttpTransport(graphqlUrl, {
-    headers: {'Authorization': lscache.get(TOKEN_STORAGE)}
+    handleErrors: (errors, data) => {
+      const error = errors[0]
+      throw new Error(JSON.stringify(error))
+    }
   })
 })
 
@@ -63,11 +77,9 @@ export  default {
         return Promise.reject(result)
       }
       return Promise.resolve(result)
-    }).catch((errorMsg) => {
-      const reg = /code:\s*([\d]+)/g
-      reg.test(errorMsg)
-      errorHandle(Number.parseInt(RegExp.$1))
-      return Promise.reject(result)
+    }).catch((error) => {
+      errorHandle(error)
+      return Promise.reject()
     })
   },
   mutate(mutationStr, vars, config) {
@@ -84,11 +96,9 @@ export  default {
         return Promise.reject(result)
       }
       return Promise.resolve(result)
-    }).catch((errorMsg) => {
-      const reg = /code:\s*([\d]+)/g
-      reg.test(errorMsg)
-      errorHandle(Number.parseInt(RegExp.$1))
-      return Promise.reject(result)
+    }).catch((error) => {
+      errorHandle(error)
+      return Promise.reject()
     })
   }
 }

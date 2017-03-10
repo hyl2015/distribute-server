@@ -42,8 +42,6 @@ manifest.registrations.push(
             formatResponse: (response, options) => {
               if (response.errors && response.errors.length > 0) {
                 delete response.data
-                response.error = response.errors[0]
-                delete response.errors
               } else {
                 response.code = HTTP_ERROR.SUCCESS.code
               }

@@ -9,6 +9,7 @@ import Resources from './containers/Resources.vue'
 import Publish from './containers/Publish.vue'
 import NotFoundPage from './containers/NotFoundPage.vue'
 import HomeTemplate from './containers/HomeTemplate.vue'
+import ResourceVersionDetail from './containers/ResourceVersionDetail.vue'
 import userApi from './api/user'
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ const routes = [
       {
         path: '/publish',
         component: Publish
+      },
+      {
+        path: '/resources/detail/:id',
+        name: '/resources/detail',
+        component: ResourceVersionDetail
       }
     ]
   },

@@ -84,7 +84,6 @@
     },
     methods: {
       onCreate () {
-
         const self = this
         publishApi.resCreateNewVer({
           gitBranch: self.gitBranch,
@@ -93,7 +92,7 @@
           notes: self.notes
         }).then(function () {
           self.$dispatch(ACTION_APP_SHOW_TOAST_MSGA, '创建成功～')
-          self.$emit('on-close')
+          self.$emit('on-create')
         })
 
       },

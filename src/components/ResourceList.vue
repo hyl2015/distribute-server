@@ -20,12 +20,14 @@
             <div class="git-version">{{item.gitVer}}</div>
           </mu-td>
           <mu-td>{{item.updatedAt | dateTime}}</mu-td>
-          <mu-td v-html="getStatusName(item.status)"></mu-td>
-          <mu-td>操作按钮[回滚][详细]....</mu-td>
+          <mu-td >{{item.status | resVerStatus}}</mu-td>
+          <mu-td>
+            <flat-button primary @click="goDetail(item.id)">详情</flat-button>
+          </mu-td>
         </mu-tr>
       </mu-tbody>
     </mu-table>
-    <mu-pagination :total="pagination.total" :page-size="pagination.pageSize" @pageChange="handleClick"></mu-pagination>
+    <mu-pagination :total="pagination.total" :page-size="pagination.pageSize" @page-change="switchPage"></mu-pagination>
   </div>
 </template>
 
@@ -39,6 +41,8 @@
   import Tr from 'muse-ui/src/table/tr.vue'
   import TBody from 'muse-ui/src/table/tbody.vue'
   import Pagination from 'muse-ui/src/pagination'
+  import flatButton from 'muse-ui/src/flatButton'
+
   import PublishApi from '../api/publish'
   import {mapGetters} from 'vuex'
   import {
@@ -65,25 +69,19 @@
       'mu-tbody': TBody,
       'mu-thead': Thead,
       'mu-sub-header': SubHeader,
-      'mu-pagination': Pagination
+      'mu-pagination': Pagination,
+      flatButton
     },
     methods: {
-      handleClick (newIndex) {
+      switchPage (newIndex) {
         console.info(newIndex)
       },
-      getStatusName(status) {
-        switch (status) {
-          case 0:
-            return '新创建'
-          case 1:
-            return '已打包'
-          case 2:
-            return '已上线'
-          case 3:
-            return '已下线'
-        }
-      }
-    }
+      goDetail(id) {
+        this.$router.push({
+          name: '/resources/detail',
+          params: {id}
+        })
+      }}
   }
 </script>
 

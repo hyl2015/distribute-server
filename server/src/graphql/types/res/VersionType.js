@@ -14,6 +14,7 @@ export default {
       notes: String
       status: Int
       gitVer: String
+      preId: Int!
       createdAt: String
       updatedAt: String
       preVersion: ResVersion      

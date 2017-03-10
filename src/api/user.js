@@ -22,7 +22,6 @@ export default {
       loading: true
     }).then((data) => {
       lscache.set(TOKEN_STORAGE, data.token)
-      store.dispatch(ACTION_USER_INFO, data.user)
       return Promise.resolve()
     }).catch(() => Promise.reject())
   },
