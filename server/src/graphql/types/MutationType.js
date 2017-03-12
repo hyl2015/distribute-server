@@ -9,7 +9,7 @@ export default {
     type Mutation {
       sys_updateConfigs(cfgs:String): Boolean
       
-      res_createNewVer(preVer:Int,verName:String,notes:String,gitBranch:String): Boolean
+      res_createNewVer(preVer:Int,verName:String,notes:String,gitBranch:String,platform:Int): Boolean
       res_verPackaging(id: Int): ResVersion
       res_verOnLine(id: Int): Int
       res_verOffLine(id: Int): Int

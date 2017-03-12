@@ -3,7 +3,7 @@
  */
 
 
-import Build from '../../../scripts/Build'
+import Build from '../../scripts/Build'
 
 
 export const hello = {

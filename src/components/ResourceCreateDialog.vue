@@ -13,6 +13,13 @@
         <mu-menu-item :value="0" title="初始版本"/>
         <mu-menu-item v-for="(ver,index) in createInfo.resVers" :value="ver.id" :title="ver.ver" :key="ver.id"/>
       </mu-select-field>
+      <mu-select-field full-width v-model="platform" :labelFocusClass="['label-foucs']"
+                       :error-text="$v.platform.$invalid?'请选择系统版本':null" label="选择系统版本">
+        <mu-menu-item :value="0" title="全部"/>
+        <mu-menu-item :value="1" title="IOS"/>
+        <mu-menu-item :value="2" title="ANDROID"/>
+
+      </mu-select-field>
       <mu-text-field label="输入版本号" full-width hintText="版本号" v-model="verName"
                      :error-text="$v.verName.$invalid?'请输输入版本号':null"/>
 
@@ -47,6 +54,7 @@
         createInfo: {},
         gitBranch: null,
         preVer: null,
+        platform: null,
         verName: null,
         notes: null
       }
@@ -62,6 +70,9 @@
         required
       },
       verName: {
+        required
+      },
+      platform: {
         required
       }
     },
@@ -89,6 +100,7 @@
           gitBranch: self.gitBranch,
           preVer: self.preVer,
           verName: self.verName,
+          platform: self.platform,
           notes: self.notes
         }).then(function () {
           self.$dispatch(ACTION_APP_SHOW_TOAST_MSGA, '创建成功～')

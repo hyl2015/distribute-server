@@ -6,13 +6,14 @@ import Config from '../models/Config'
 import shell from 'shelljs'
 import {graphqlError} from '../../common/utils'
 import {HTTP_ERROR} from '../../common/http-constants'
-import Build from '../../../scripts/Build'
-import {RES_VERSION_STATUS} from '../../common/constants'
+import Build from '../../scripts/Build'
+import {RES_VERSION_STATUS, PLATFORMS} from '../../common/constants'
 
-export const createNewVer = (modelInstance, {verName, notes, preVer, gitBranch}, context, info) => {
+export const createNewVer = (modelInstance, {verName, notes, preVer, gitBranch, platform}, context, info) => {
   return new ResVersion({
     ver: verName,
     notes,
+    platform,
     preId: preVer,
     gitVer: gitBranch
   }).save().then(function () {
@@ -48,9 +49,9 @@ export const remove = (modelInstance, {id}, context, info) => {
 }
 
 export const packaging = (modelInstance, {id}, context, info) => {
-  
+
   return Config.forge().where('key', 'in', ['config.rn.dir',
-                                            'config.resource.dir'
+    'config.resource.dir'
   ]).fetchAll().then((configs) => {
     let resDir = ''
     let rnDir = ''
@@ -66,29 +67,38 @@ export const packaging = (modelInstance, {id}, context, info) => {
     if (!resDir || !shell.test('-e', resDir)) {
       return graphqlError(HTTP_ERROR.RES_PUBLISH_RES_PATH_NOT_EXISTS)
     }
-    
+
     return ResVersion.forge({
       id
     }).fetch().then((version) => {
       const gitVer = version.get('gitVer')
+      const platform = version.get('platform')
       const commitId = gitVer.split('_')[1]
       shell.cd(rnDir)
       shell.exec(`git checkout -b res_ver${id} ${commitId}`)
-      
+
       const build = new Build({
         inPath: rnDir,
         outPath: resDir,
         version: version.get('id'),
         preVersion: version.get('preId')
       })
-      
+
       try {
-        build.start()
+
+        if (platform === PLATFORMS.ALL) {
+          build.start(PLATFORMS.IOS)
+          build.start(PLATFORMS.ANDROID)
+        } else {
+          build.start(platform)
+        }
+
         version.set('status', RES_VERSION_STATUS.PACKAGED)
         return version.save().then(function (result) {
           return result.serialize()
         })
       } catch (e) {
+        console.error(e)
         return graphqlError(HTTP_ERROR.RES_PUBLISH_RES_ERROR)
       } finally {
         shell.cd(rnDir)
@@ -96,8 +106,8 @@ export const packaging = (modelInstance, {id}, context, info) => {
         shell.exec(`git checkout master`)
         shell.exec(`git branch -D res_ver${id}`)
       }
-      
+
     })
   })
-  
+
 }

@@ -9,3 +9,9 @@ export const RES_VERSION_STATUS = {
   ONLINE: 2,
   OFFLINE: 3
 }
+
+export const PLATFORMS = {
+  ALL: 0,
+  IOS: 1,
+  ANDROID: 2
+}

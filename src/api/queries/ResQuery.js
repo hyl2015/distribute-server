@@ -18,8 +18,8 @@ export const QUERY_RES_CREATE_INFO = `
             }
       `
 export const MUTATION_RES_CREATE_VER=`
-        ($preVer:Int,$verName:String,$notes:String,$gitBranch:String){
-            res_createVer: res_createNewVer(preVer:$preVer,verName:$verName,notes:$notes,gitBranch:$gitBranch)
+        ($preVer:Int,$verName:String,$notes:String,$gitBranch:String,$platform:Int){
+            res_createVer: res_createNewVer(preVer:$preVer,verName:$verName,notes:$notes,gitBranch:$gitBranch,platform:$platform)
         }
 `
 
