@@ -28,6 +28,11 @@ if (process.env.NODE_ENV !== 'production') {
 manifest.registrations.push(
   {
     plugin: {
+      register: '../server/src/plugins/bootstrap'
+    }
+  },
+  {
+    plugin: {
       register: '../server/src/plugins/graphql',
       options: {
         path: '/api/graphql',

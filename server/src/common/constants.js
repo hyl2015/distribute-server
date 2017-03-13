@@ -15,3 +15,7 @@ export const PLATFORMS = {
   IOS: 1,
   ANDROID: 2
 }
+
+export const SYS_CONFIG_CACHE = 'SYS_CONFIG_CACHE'
+//资源更新相差最大版本
+export const RES_MAX_PATCH_VERSION = 10

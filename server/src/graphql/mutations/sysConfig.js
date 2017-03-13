@@ -3,6 +3,7 @@
  */
 import _ from 'lodash'
 import Configs from '../collections/Configs'
+import {reSetSysCache} from '../../common/utils'
 
 export const updateConfig = (modelInstance, {cfgs}, context, info) => {
   
@@ -20,6 +21,8 @@ export const updateConfig = (modelInstance, {cfgs}, context, info) => {
   }
   
   return Configs.forge(cols).invokeThen('save').then(function (result) {
-    return true
+    return reSetSysCache().then(() => {
+      return true
+    })
   })
 }

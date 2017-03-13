@@ -29,6 +29,7 @@
     "inject-loader": "^3.0.0-beta2",
     "isparta-loader": "^2.0.0",
     "json-loader": "^0.5.4",
+    "jsonfile": "^2.4.0",
     "jsonwebtoken": "^7.2.1",
     "keycode": "^2.1.8",
     "knex": "^0.12.6",
