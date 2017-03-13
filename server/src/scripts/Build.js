@@ -253,6 +253,7 @@ class Build {
     const infoObj = {
       latestVer,
       isFull: false,
+      isLatest: false,
       info: {}
     }
     

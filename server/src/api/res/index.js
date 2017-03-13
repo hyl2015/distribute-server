@@ -26,7 +26,9 @@ export const checkVer = {
         return ver.get('id')
       })
       if (ids.length === 0) {
-        return success(reply, '不需要更新')
+        return success(reply, {
+          isLatest: true
+        })
       }
       const ver = ids[0]
       if (ver > currentVer) {
@@ -41,7 +43,9 @@ export const checkVer = {
         })
         success(reply, build.getUpdateInfo(request.params.platform, currentVer, ids))
       } else {
-        success(reply, '不需要更新')
+        success(reply, {
+          isLatest: true
+        })
       }
     })
     
