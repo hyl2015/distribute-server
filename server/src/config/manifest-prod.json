@@ -1,0 +1,52 @@
+{
+  "connections": [
+    {
+      "host": "localhost",
+      "port": 8080,
+      "routes": {
+        "cors": true
+      },
+      "router": {
+        "stripTrailingSlash": true
+      }
+    }
+  ],
+  "registrations": [
+    {
+      "plugin": "hapi-auth-jwt2"
+    },
+    {
+      "plugin": "inert"
+    },
+    {
+      "plugin": "./plugins/auth"
+    },
+    {
+      "plugin": "./api",
+      "options": {
+        "routes": {
+          "prefix": "/api"
+        }
+      }
+    },
+    {
+      "plugin": {
+        "register": "hapi-cors",
+        "options": {
+          "origins": [
+            "http://localhost:8081"
+          ],
+          "methods": [
+            "POST, GET, OPTIONS,PUT,DELETE"
+          ],
+          "headers": [
+            "Accept",
+            "Content-Type",
+            "Authorization",
+            "Access-Token"
+          ]
+        }
+      }
+    }
+  ]
+}

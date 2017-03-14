@@ -79,6 +79,15 @@ Glue.compose(manifest, {relativeTo: __dirname}, (err, server) => {
   if (err) {
     console.log('server.register err:', err)
   }
+  server.path(__dirname + './assets')
+  server.route({
+    path: '/',
+    method: 'GET',
+    config: {
+      auth: false,
+      handler: {file: './index.html'}
+    }
+  })
   
   server.ext('onRequest', (request, reply) => {
     if (request.path.indexOf('/api') === 0) {

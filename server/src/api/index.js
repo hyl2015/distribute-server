@@ -11,7 +11,6 @@ export const register = (plugin, options, next) => {
         {method: 'GET', path: '/test', config: home.test},
         {method: 'GET', path: '/{version}', config: home.hello},
         {method: 'GET', path: '/restricted', config: home.restricted},
-        {method: 'GET', path: '/{path*}', config: home.notFound},
         {method: 'GET', path: '/res/check/{platform}/{version}', config: res.checkVer},
         {method: 'POST', path: '/user/login', config: user.login},
         {method: 'GET', path: '/user/login', config: user.isLogin},
